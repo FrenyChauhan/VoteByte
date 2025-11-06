@@ -7,6 +7,7 @@ const Sidebar = () => {
     { name: "Vote Rooms", icon: ListChecks, path: "/admin/dashboard/voterooms" },
     { name: "Host Room Requests", icon: ClipboardCheck, path: "/admin/dashboard/hostroomrequests" },
     { name: "Host Verify Requests", icon: Users, path: "/admin/dashboard/hostverifyrequests" },
+    { name: "Candidate Approvals", icon: ClipboardCheck, path: "/admin/dashboard/candidate-approvals" },
   ];
 
   return (

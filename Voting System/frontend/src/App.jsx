@@ -14,6 +14,8 @@ export default function App() {
 
   useEffect(()=>{
     localStorage.setItem("theme", theme);
+    // Apply theme to <html> for CSS variables
+    document.documentElement.setAttribute('data-theme', theme);
   },[theme]);
 
   const toggleTheme = () => {
@@ -22,6 +24,8 @@ export default function App() {
 
   useEffect(() => {
     checkAuth();
+    // Ensure initial data-theme is set
+    document.documentElement.setAttribute('data-theme', theme);
   }, []);
 
   if(isCheckingAuth) return <LoadingSpinner theme={theme} />;
@@ -31,11 +35,11 @@ export default function App() {
      <style>
         {`
           ::selection {
-            background-color: ${theme === "dark" ? "#10B981" : "#3B5BFF"};
+            background-color: var(--accent);
             color: white;
           }
           ::-moz-selection {
-            background-color: ${theme === "dark" ? "#10B981" : "#3B5BFF"};
+            background-color: var(--accent);
             color: white;
           }
         `}

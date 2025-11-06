@@ -4,6 +4,7 @@ import Stats from "../pages/admin/Stats";
 import VoteRooms from "../pages/admin/VoteRooms";
 import HostRoomRequest from "../pages/admin/HostRoomRequest";
 import HostVerifyRequest from "../pages/admin/HostVerifyRequest";
+import CandidateApprovals from "../pages/admin/CandidateApprovals";
 import AdminLayout from "../components/layout/admin/AdminLayout";
 import { useAdminStore } from "../store/adminAuthStore";
 
@@ -29,6 +30,7 @@ export default function AdminRoutes() {
                 <Route path="/voterooms" element={<VoteRooms />} />
                 <Route path="/hostroomrequests" element={<HostRoomRequest />} />
                 <Route path="/hostverifyrequests" element={<HostVerifyRequest />} />
+                <Route path="/candidate-approvals" element={<CandidateApprovals />} />
               </Routes>
             </AdminLayout>
           </ProtectedAdminRoute>

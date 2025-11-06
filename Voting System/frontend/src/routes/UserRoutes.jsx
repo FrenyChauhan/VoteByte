@@ -10,12 +10,14 @@ import ResetPasswordPage from "../pages/ResetPasswordPage";
 import LandingPage from "../pages/LandingPage";
 import ElectionPage from "../pages/ElectionPage";
 import ActiveElection from "../pages/ActiveElection";
+import ElectionCandidates from "../pages/ElectionCandidates";
 import Profile from "../pages/Profile";
 import HostVerify from "../pages/HostVerify";
 import HostDashboard from "../pages/HostDashboard";
 import HostElections from "../pages/HostElections";
 import CreateElection from "../pages/CreateElection";
 import EditElection from "../pages/EditElection";
+import HostElectionCandidates from "../pages/HostElectionCandidates";
 
 
 import ProtectRoute from "./ProtectRoute";
@@ -35,6 +37,11 @@ export default function UserRoutes({onToggleTheme, theme}) {
 
   return (
     <div className="min-h-screen flex flex-col">
+      {/* Navbar */}
+      {!shouldHideFooterNavbar && (
+        <NavBar onToggleTheme={onToggleTheme} theme={theme} />
+      )}
+
       {/* Main Content Area */}
       <div
         className={`flex-1 flex items-center justify-center relative overflow-hidden transition-all duration-700 ${
@@ -43,9 +50,6 @@ export default function UserRoutes({onToggleTheme, theme}) {
             : "bg-linear-to-br from-[#E8EDFF] via-[#D6E0FF] to-[#C2CEFF]"
         }`}
       >
-        {!shouldHideFooterNavbar && (
-          <NavBar onToggleTheme={onToggleTheme} theme={theme} />
-        )}
         {theme === "dark" ? (
           <>
             <FloatingShape color="bg-green-500" size="w-64 h-64" top="-5%" left="10%" delay={0} />
@@ -76,6 +80,7 @@ export default function UserRoutes({onToggleTheme, theme}) {
 
         <Route path='/election/active/:id' element={<ProtectRoute><ActiveElection /></ProtectRoute>} />
         <Route path='/election/:status/:id' element={<ProtectRoute><ActiveElection /></ProtectRoute>} />
+        <Route path='/election/:status/:id/candidates' element={<ElectionCandidates theme={theme} />} />
         <Route path="/profile" element={<ProtectRoute><Profile /></ProtectRoute>} />
 
         <Route
@@ -147,6 +152,14 @@ export default function UserRoutes({onToggleTheme, theme}) {
           element={
             <HostProtectRoute>
               <EditElection />
+            </HostProtectRoute>
+          } 
+        />
+        <Route 
+          path="/host/election/:id/candidates" 
+          element={
+            <HostProtectRoute>
+              <HostElectionCandidates />
             </HostProtectRoute>
           } 
         />

@@ -66,19 +66,31 @@ export default function ElectionCard({ election, theme }) {
           {election.description}
         </p>
 
-        {/* Button */}
-        <motion.button
-          onClick={handleView}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className={`w-full px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
-            theme === "dark"
-              ? "bg-linear-to-r from-green-500 to-emerald-500 text-white hover:shadow-lg hover:shadow-green-500/50"
-              : "bg-linear-to-r from-[#3B5BFF] to-[#2F49D1] text-white hover:shadow-lg hover:shadow-[#3B5BFF]/50"
-          }`}
-        >
-          View Details
-        </motion.button>
+        {/* Buttons */}
+        <div className="grid grid-cols-2 gap-2 mt-2">
+          <motion.button
+            onClick={handleView}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="px-4 py-2 rounded-[var(--radius-md)] font-medium text-white shadow-[var(--shadow-accent)]"
+            style={{ backgroundImage: "var(--linear-primary)" }}
+          >
+            View Details
+          </motion.button>
+
+          <motion.button
+            onClick={() => navigate(`/election/${election.status}/${election.id}/candidates`)}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className={`px-4 py-2 rounded-[var(--radius-md)] font-medium transition-all border ${
+              theme === "dark"
+                ? "text-[var(--text)] border-[var(--border)] bg-[var(--surface-1)] hover:bg-[var(--surface-2)]"
+                : "text-[#1E3A8A] border-[#D6E0FF] bg-white hover:bg-[#F8FAFF]"
+            }`}
+          >
+            Manifesto
+          </motion.button>
+        </div>
       </div>
     </motion.div>
   );

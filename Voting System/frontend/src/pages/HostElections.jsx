@@ -53,6 +53,13 @@ const HostElections = () => {
               >
                 Edit
               </Link>
+              <Link
+                to={`/host/election/${e.id}/candidates`}
+                className="px-4 py-2 rounded-lg font-medium text-white shadow-[var(--shadow-accent)]"
+                style={{ backgroundImage: "var(--linear-primary)" }}
+              >
+                Details
+              </Link>
               <button className="bg-red-500/20 border border-red-400/30 px-4 py-2 rounded-lg hover:bg-red-500/30 transition-all">
                 Delete
               </button>

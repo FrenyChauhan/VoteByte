@@ -11,7 +11,7 @@ const useAuthStore = create((set, get) => ({
   signup: async (userData) => {
     set({error: null})
     try {
-      const { email, password, name, userType = 'host' } = userData;
+      const { email, password, name, userType = 'user' } = userData;
       const users = JSON.parse(localStorage.getItem('users') || '[]');
 
       if (users.some((user) => user.email === email)) {
