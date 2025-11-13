@@ -67,6 +67,10 @@ app.use('/api/candidates', candidateRoutes);
 const voteRoutes = require('./routes/vote');
 app.use('/api/votes', voteRoutes);
 
+// results routes
+const resultRoutes = require('./routes/result');
+app.use('/api/results', resultRoutes);
+
 // voter routes
 const voterRoutes = require('./routes/voter');
 app.use('/api/voters', voterRoutes);
