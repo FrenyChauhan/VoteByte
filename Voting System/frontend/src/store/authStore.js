@@ -93,6 +93,33 @@ const useAuthStore = create((set, get) => ({
     }
   },
 
+  verifyEmail: async (code) => {
+    const { tempEmail } = get();
+    if (!tempEmail) {
+      throw new Error('No pending email verification');
+    }
+
+    try {
+      set({ error: null, isLoading: true });
+      const response = await api.post('/auth/verify-otp', { 
+        email: tempEmail, 
+        code 
+      });
+
+      // Clear temp email and return true on success
+      set({ tempEmail: null });
+      toast.success('Email verified successfully!');
+      return true;
+    } catch (error) {
+      const errorMessage = error.response?.data?.message || 'Verification failed';
+      set({ error: errorMessage });
+      toast.error(errorMessage);
+      throw error;
+    } finally {
+      set({ isLoading: false });
+    }
+  },
+
   resendOTP: async () => {
     const { tempEmail } = get();
     if (!tempEmail) {
@@ -102,7 +129,7 @@ const useAuthStore = create((set, get) => ({
 
     try {
       set({ isLoading: true });
-      await api.post('/auth/resend-verification', { email: tempEmail });
+      await api.post('/auth/resend-otp', { email: tempEmail });
       toast.success('Verification email resent!');
       return true;
     } catch (error) {

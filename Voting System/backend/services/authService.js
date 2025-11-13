@@ -20,7 +20,8 @@ async function registerUser(data) {
       date_of_birth: data.date_of_birth,
       address: data.address,
       profile_photo: data.profile_photo,
-      status: 'ACTIVE',
+      // create user as INACTIVE until email verification completes
+      status: 'INACTIVE',
     },
     select: {
       password: false,

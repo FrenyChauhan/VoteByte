@@ -36,7 +36,8 @@ const EmailVerification = ({ theme }) => {
     try {
       await verifyEmail(verificationCode);
       toast.success("Email Verified Successfully");
-      navigate("/");
+      // Redirect to login page after successful verification
+      navigate("/login");
     } catch (err) {
       console.error("ERROR IN VERIFYING:", err);
     }

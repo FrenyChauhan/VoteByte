@@ -1,5 +1,6 @@
 const authService = require('../services/authService');
 const uploadToCloudinary = require('../utils/uploadToCloudinary');
+const verificationService = require('../services/verificationService');
 
 async function register(req, res) {
   try {
@@ -35,7 +36,16 @@ async function register(req, res) {
       profile_photo: profilePhotoUrl,
     });
 
-    return res.status(201).json({ user });
+    // send verification OTP to the user's email (fire-and-forget; failure shouldn't block signup)
+    try {
+      await verificationService.sendOtp(user.email);
+    } catch (mailErr) {
+      console.error('Failed to send verification email', mailErr);
+      // still return created user but inform about email send failure
+      return res.status(201).json({ user, message: 'User created but failed to send verification email. Please request a resend.' });
+    }
+
+    return res.status(201).json({ user, message: 'User created. Verification code sent to email.' });
   } catch (err) {
     console.error(err);
     if (err.code === 'P2002') {
