@@ -84,44 +84,23 @@ export default function ElectionCard({ election, theme }) {
         </div>
 
         {/* Buttons */}
-        {election.status === "COMPLETED" ? (
-          <div className="mt-2">
-            <motion.button
-              onClick={() => navigate(`/election/COMPLETED/${election.election_id}`)}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              className="w-full px-4 py-2 rounded-lg font-medium text-white shadow-lg"
-              style={{ backgroundImage: "var(--linear-primary)" }}
-            >
-              View Results
-            </motion.button>
-          </div>
-        ) : (
-          <div className="grid grid-cols-2 gap-2 mt-2">
-            <motion.button
-              onClick={handleView}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              className="px-4 py-2 rounded-lg font-medium text-white shadow-lg"
-              style={{ backgroundImage: "var(--linear-primary)" }}
-            >
-              Vote Now
-            </motion.button>
-
-            <motion.button
-              onClick={() => navigate(`/election/${election.status}/${election.election_id}/candidates`)}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              className={`px-4 py-2 rounded-lg font-medium transition-all border ${
-                theme === "dark"
-                  ? "text-gray-300 border-gray-600 bg-gray-700/50 hover:bg-gray-600/50"
-                  : "text-[#1E3A8A] border-[#4F62C2] bg-[#F0F4FF] hover:bg-[#E8ECFF]"
-              }`}
-            >
-              Candidates
-            </motion.button>
-          </div>
-        )}
+        <div className="mt-2">
+          <motion.button
+            onClick={() => navigate(`/election/${election.status}/${election.election_id}${election.status === "COMPLETED" ? "" : "/candidates"}`)}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className={`w-full px-4 py-2 rounded-lg font-medium shadow-lg ${
+              election.status === "COMPLETED"
+                ? "text-white"
+                : theme === "dark"
+                  ? "text-gray-300 border border-gray-600 bg-gray-700/50 hover:bg-gray-600/50"
+                  : "text-[#1E3A8A] border border-[#4F62C2] bg-[#F0F4FF] hover:bg-[#E8ECFF]"
+            }`}
+            style={election.status === "COMPLETED" ? { backgroundImage: "var(--linear-primary)" } : {}}
+          >
+            {election.status === "COMPLETED" ? "View Results" : "Cast Vote"}
+          </motion.button>
+        </div>
       </div>
     </motion.div>
   );

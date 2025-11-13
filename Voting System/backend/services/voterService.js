@@ -49,13 +49,13 @@ exports.registerVoter = async (userId, electionId, authType) => {
             throw new Error('User is already registered as a voter for this election');
         }
 
-        // 4. Create voter record
+        // 4. Create voter record with auto-verification enabled
         const voter = await prisma.voter.create({
             data: {
                 user_id: userId,
                 election_id: electionId,
                 authType: authType,
-                verified: false,
+                verified: true,  // Auto-verify on registration so voter can vote immediately
                 has_voted: false
             },
             include: {

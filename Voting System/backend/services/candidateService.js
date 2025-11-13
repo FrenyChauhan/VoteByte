@@ -64,7 +64,8 @@ class CandidateService {
                     manifesto: candidateData.manifesto || '',
                     age: candidateData.age,
                     qualification: candidateData.qualification,
-                    status: 'PENDING'
+                    // Auto-approve candidates on registration
+                    status: 'APPROVED'
                 },
                 include: {
                     user: {
