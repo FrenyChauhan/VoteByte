@@ -26,7 +26,7 @@ const LoginPage = ({ theme }) => {
       // Determine where to navigate based on user role
       const user = JSON.parse(localStorage.getItem('user') || '{}');
       if (user.role === 'HOST') {
-        navigate("/host/dashboard");
+        navigate("/host/elections");
       } else {
         navigate("/dashboard");
       }

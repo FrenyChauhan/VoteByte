@@ -14,7 +14,6 @@ import ElectionResultPage from "../pages/ElectionResultPage";
 import ElectionCandidates from "../pages/ElectionCandidates";
 import Profile from "../pages/Profile";
 import HostVerify from "../pages/HostVerify";
-import HostDashboard from "../pages/HostDashboard";
 import HostElections from "../pages/HostElections";
 import CreateElection from "../pages/CreateElection";
 import EditElection from "../pages/EditElection";
@@ -126,14 +125,6 @@ export default function UserRoutes({onToggleTheme, theme}) {
 
 
         <Route path="/host/verify" element={<HostVerify />} />
-        <Route 
-          path="/host/dashboard" 
-          element={
-            <ProtectRoute>
-              <HostDashboard />
-            </ProtectRoute>
-          } 
-        />
         <Route 
           path="/host/elections" 
           element={

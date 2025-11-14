@@ -27,7 +27,6 @@ const Navbar = ({ onToggleTheme, theme }) => {
   ];
 
   const authenticatedLinks = [
-    { path: "/host/dashboard", label: "Host Dashboard" },
     { path: "/host/elections", label: "My Elections" },
     { path: "/host/election/new", label: "Create Election" },
   ];
